@@ -25,6 +25,9 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
         // Split modifier scores parameter into an array
         $modifiers =  explode('|', $this->params->get('modifiers'));
 
+        // Get the number of entries to return
+        $entriesLimit = $this->params->get('limit');
+
         // Get all entries in the current collection
         $allEntries = Entry::query()->where('collection', $collection)->get();
 
@@ -77,7 +80,7 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
         });
 
         // Limit the number of related entries
-        $relatedEntries = array_slice($relatedEntries, 0, 4);
+        $relatedEntries = array_slice($relatedEntries, 0, $entriesLimit);
 
         // Sort the limited related entries by date in descending order
         usort($relatedEntries, function ($a, $b) {

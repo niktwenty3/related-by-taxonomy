@@ -21,7 +21,7 @@ composer require niktwenty3/related-by-taxonomy
 For now its very limited but the basic usage is: 
 
 ```
-{{ relbytaxonomy taxonomies="tags|categories|products|authors|features" modifiers="1.2|1.5|.5|.5|1" }}
+{{ relbytaxonomy limit="4" taxonomies="tags|categories|products|authors|features" modifiers="1.2|1.5|.5|.5|1" }}
     {{ related_entries }}
         <h2>
             <a class=" " href="{{ url }}">{{ title }}</a>
@@ -30,9 +30,13 @@ For now its very limited but the basic usage is:
 {{ /relbytaxonomy }}
 ```
 
-The taxonomies parameters accepts the taxonomies that will be searched for common terms with the current entry.
+**Parameters**
 
-The modifiers parameter accepts the modifier that will be multiplied to produce the relationship score.
+`taxonomies`: accepts the taxonomies that will be searched for common terms with the current entry.
+
+`modifiers`: parameter accepts the modifier that will be multiplied to produce the relationship score per taxonomy.
+
+`limit`: how many results to return.
 
 ## How it works
 
