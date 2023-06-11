@@ -23,7 +23,7 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
         $taxonomies = explode('|', $this->params->get('taxonomies'));
         
         // Split modifier scores parameter into an array
-        $scores =  explode('|', $this->params->get('scores'));
+        $modifiers =  explode('|', $this->params->get('modifiers'));
 
         // Get all entries in the current collection
         $allEntries = Entry::query()->where('collection', $collection)->get();
@@ -52,7 +52,7 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
                     $sharedItems = array_intersect($entry->get($taxonomy), $otherEntry->get($taxonomy));
                 
                     // Add the score to the total score multiplied by the modifier for the taxonomy
-                    $score += count($sharedItems)*(float)$scores[$index];
+                    $score += count($sharedItems)*(float)$modifiers[$index];
                 }
 
                 // Increment the index
