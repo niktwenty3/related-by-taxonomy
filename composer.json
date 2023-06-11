@@ -14,7 +14,9 @@
     "extra": {
         "statamic": {
             "name": "Related By Taxonomy",
-            "description": "A Statamic addon that returns related entries using common taxonomy terms (tags).",
+            "description": "A Statamic addon that returns related entries using common taxonomy terms (tags)."
+        },
+        "laravel": {
             "providers": [
                 "Niktwenty3\\RelatedByTaxonomy\\ServiceProvider"
             ]
