@@ -1,5 +1,5 @@
 {
-    "name": "niktwenty3/relbytaxonomy",
+    "name": "niktwenty3/related-by-taxonomy",
     "description": "A Statamic addon that returns related entries using common taxonomy terms (tags).",
     "type": "statamic-addon",
     "require": {
