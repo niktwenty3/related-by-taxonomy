@@ -4,7 +4,7 @@ namespace Niktwenty3\RelatedByTaxonomy;
 
 use Statamic\Tags\Tags;
 use Statamic\Facades\Entry;
-use Yooper\StopWords;
+// use Yooper\StopWords;
 
 class Relbytaxonomy extends \Statamic\Tags\Tags
 {
@@ -54,11 +54,11 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
             $entryTitleTokens = array_unique(explode(' ', strtolower($entry->get('title'))));
             $otherEntryTitleTokens = array_unique(explode(' ', strtolower($otherEntry->get('title'))));
 
-            // Remove stop words from the title tokens
-            $stopWords = new Yooper\StopWords();
-            $stopWordsList = $stopWords->getStopWords('english');
-            $entryTitleTokens = array_diff($entryTitleTokens, $stopWordsList);
-            $otherEntryTitleTokens = array_diff($otherEntryTitleTokens, $stopWordsList);
+            // // Remove stop words from the title tokens
+            // $stopWords = new Yooper\StopWords();
+            // $stopWordsList = $stopWords->getStopWords('english');
+            // $entryTitleTokens = array_diff($entryTitleTokens, $stopWordsList);
+            // $otherEntryTitleTokens = array_diff($otherEntryTitleTokens, $stopWordsList);
 
             // Count the total number of unique words in the entry's title
             $totalWordsInEntryTitle = count($entryTitleTokens);
