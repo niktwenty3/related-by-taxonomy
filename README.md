@@ -1,16 +1,16 @@
 # Related By Taxonomy
 
-A Statamic addon that returns related entries using common taxonomy terms (tags).
+A Statamic addon that returns related entries using common taxonomy entries and title comparison.
 
 ## Features
 
-Very basic for now. 
+- Searches for related entries across multiple taxonomies
+- Scores taxonomy entry matches using a modifier per taxonomy
+- Scores the percentage of unique words matching in the title
+- Can add a comma seperated stop words list to be excluded from the title word matching
+- Each entry returned contains thier scoring information
 
 ## How to Install
-
-Will have to look into that. Never done a composer package... yet. 
-
-But, most likely it will look like this:
 
 ``` bash
 composer require niktwenty3/related-by-taxonomy
@@ -18,7 +18,7 @@ composer require niktwenty3/related-by-taxonomy
 
 ## How to Use
 
-For now its very limited but the basic usage is: 
+The basic usage is: 
 
 ```
 {{ relbytaxonomy limit="4" taxonomies="tags|categories|products|authors|features" modifiers="1.2|1.5|.5|.5|1" stopwords="with,and,the,use,how,to,as,a,what,you,should,know" }}
@@ -32,11 +32,11 @@ For now its very limited but the basic usage is:
 
 **Parameters**
 
-`taxonomies`: accepts the taxonomies that will be searched for common terms with the current entry.
+`taxonomies`: accepts the taxonomies that will be searched for common terms with the current entry. **(required)**
 
-`modifiers`: parameter accepts the modifier that will be multiplied to produce the relationship score per taxonomy.
+`modifiers`: parameter accepts the modifier that will be multiplied to produce the relationship score per taxonomy. **(required)**
 
-`limit`: how many results to return.
+`limit`: how many results to return. **(required)**
 
 `stopwords`: these are words that are removed when doing title comparison. 
 
