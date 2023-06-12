@@ -95,10 +95,14 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
             
             // If the score is greater than 0, add the entry to the related entries array
             if ($score > 0 || $wordMatchPercentage > 0) {
-                
+                if ($wordMatchPercentage > 0) {
+                    $calculatedTitleScore = $wordMatchPercentage/10;
+                } else {
+                    $calculatedTitleScore = 0;
+                }
                 $relatedEntries[] = [
                     'entry' => $otherEntry,
-                    'score' => $score, // Add the score in order to sort by score
+                    'score' => $score + $calculatedTitleScore, // Add the score in order to sort by score
                     'date' => $otherEntry->date()->timestamp, // Add the timestamp of the entry's date in order to sort by date
                     'common_tags' => implode(", ", $commonTags),
                     'found_in_taxonomies' => implode(", ", $found_in_taxonomies),

@@ -41,6 +41,7 @@ For now its very limited but the basic usage is:
 ## How it works
 
 1. The tag will search all posts in the current collection for common tags and will add a score on each entry depending on how many it found. 
-2. The score is calculated by multiplying the modifier for the taxonomy by 1. 
-3. The list created is sorted descinding by higher score and then sliced to keep only the top 4 results which are then sorted by most recent. 
-4. The tag returns the results in the {{ related_entries }} variable as an object array in wich each item is a Statamic entry.
+2. The tag will also compare the words between the titles and produce a score (0 - 100) which represents the percentage common unique words found. 
+3. The final score is calculated by multiplying the modifier for the taxonomy by 1, and, by adding the title score divided by 10 (0 - 10). 
+4. The list created is sorted descinding by higher score and then sliced to keep only the top 4 results which are then sorted by most recent. 
+5. The tag returns the results in the {{ related_entries }} variable as an object array in wich each item is a Statamic entry.
