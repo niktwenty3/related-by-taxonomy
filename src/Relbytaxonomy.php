@@ -4,7 +4,6 @@ namespace Niktwenty3\RelatedByTaxonomy;
 
 use Statamic\Tags\Tags;
 use Statamic\Facades\Entry;
-// use Yooper\StopWords;
 
 class Relbytaxonomy extends \Statamic\Tags\Tags
 {
@@ -26,6 +25,9 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
         
         // Split modifier scores parameter into an array
         $modifiers =  explode('|', $this->params->get('modifiers'));
+
+        // Get the stop words list
+        $stopWordsList = explode(',', $this->params->get('stopwords'));;
 
         // Get the number of entries to return
         $entriesLimit = $this->params->get('limit');
@@ -54,11 +56,9 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
             $entryTitleTokens = array_unique(explode(' ', strtolower($entry->get('title'))));
             $otherEntryTitleTokens = array_unique(explode(' ', strtolower($otherEntry->get('title'))));
 
-            // // Remove stop words from the title tokens
-            // $stopWords = new Yooper\StopWords();
-            // $stopWordsList = $stopWords->getStopWords('english');
-            // $entryTitleTokens = array_diff($entryTitleTokens, $stopWordsList);
-            // $otherEntryTitleTokens = array_diff($otherEntryTitleTokens, $stopWordsList);
+            // Remove stop words from the title tokens
+            $entryTitleTokens = array_diff($entryTitleTokens, $stopWordsList);
+            $otherEntryTitleTokens = array_diff($otherEntryTitleTokens, $stopWordsList);
 
             // Count the total number of unique words in the entry's title
             $totalWordsInEntryTitle = count($entryTitleTokens);
@@ -120,9 +120,9 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
         $relatedEntries = array_slice($relatedEntries, 0, $entriesLimit);
 
         // Sort the limited related entries by date in descending order
-        usort($relatedEntries, function ($a, $b) {
-            return $b['word_match_percentage'] <=> $a['word_match_percentage'];
-        });
+        // usort($relatedEntries, function ($a, $b) {
+        //     return $b['word_match_percentage'] <=> $a['word_match_percentage'];
+        // });
         
         $result = array_map(function ($item) {
             return $item['entry']->toAugmentedArray();
