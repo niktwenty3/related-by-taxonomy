@@ -4,7 +4,8 @@
     "type": "statamic-addon",
     "require": {
         "php": "^7.3|^8.0",
-        "statamic/cms": ">=3.0"
+        "statamic/cms": ">=3.0",
+        "yooper/stop-words": "^1.0"
     },
     "autoload": {
         "psr-4": {
