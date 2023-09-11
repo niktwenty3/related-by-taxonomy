@@ -26,7 +26,7 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
         $modifiers =  explode('|', $this->params->get('modifiers'));
 
         // Get all entries in the current collection
-        $allEntries = Entry::query()->where('collection', $collection)->get();
+        $allEntries = Entry::query()->where('collection', $collection)->where('published', true)->get();
 
         // Array to store related entries
         $relatedEntries = [];
