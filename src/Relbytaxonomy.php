@@ -26,7 +26,9 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
         $modifiers =  explode('|', $this->params->get('modifiers'));
 
         // Get the stop words list
-        $stopWordsList = explode(',', $this->params->get('stopwords'));;
+        $stopWordsList = explode(',', $this->params->get('stopwords'));
+
+        $excludeids = explode(',', $this->params->get('excludeids'));
 
         // Get the number of entries to return
         $entriesLimit = $this->params->get('limit');
@@ -41,6 +43,7 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
             $allEntries = Entry::query()
                 ->whereIn('collection', $collections)
                 ->where('published', true)
+                ->whereNotIn('id', $excludeids)
                 ->get();
         }
 
@@ -48,7 +51,9 @@ class Relbytaxonomy extends \Statamic\Tags\Tags
             // Get all entries in the current collection
             $allEntries = Entry::query()
                 ->where('collection', $collection)
-                ->where('published', true)->get();
+                ->where('published', true)
+                ->whereNotIn('id', $excludeids)
+                ->get();
         }
 
         // Array to store related entries
